@@ -26,12 +26,15 @@ mme_group = 0x0001
 tac = 0x0007
 mcc = ${'{0:03}'.format(int(epc.mcc))}
 mnc = ${'{0:02}'.format(int(epc.mnc))}
-mme_bind_addr = ${epc.run_addr}
-apn = srsapn
+full_net_name = LimeSDR
+short_net_name = LimeSDR
+mme_bind_addr = 127.0.1.100 # mme_bind_addr = ${epc.run_addr}
+apn = internet
 dns_addr = 8.8.8.8
 encryption_algo = EEA0
 integrity_algo = EIA1
-paging_timer = 12
+paging_timer = 2
+request_imeisv = false
 
 #####################################################################
 # HSS configuration
@@ -53,7 +56,7 @@ db_file = ${epc.db_filename}
 #####################################################################
 
 [spgw]
-gtpu_bind_addr   = ${epc.run_addr}
+gtpu_bind_addr   = 127.0.1.100 # ${epc.run_addr}
 sgi_if_addr      = 172.16.0.1
 sgi_if_name      = srs_spgw_sgi
 max_paging_queue = 100

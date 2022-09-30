@@ -47,7 +47,7 @@ phy_cnfg =
     simultaneousAckCQI = true;
     period = 40; // in ms
     //subframe = [0, 10, 20, 30];
-    nof_prb = 1;
+    //nof_prb = 1;
     m_ri = 8; // RI period in CQI period
   };
 };
@@ -64,7 +64,7 @@ cell_list =
     root_seq_idx = ${cell.root_seq_idx};
     dl_earfcn = ${cell.dl_earfcn};
     //ul_earfcn = 20850;
-    ho_active = true;
+    ho_active = false;
 
     // CA cells
     scell_list = (
@@ -93,12 +93,23 @@ cell_list =
     );
 
     // ReportCfg (only A3 supported)
-    meas_report_desc = {
-      a3_report_type = "RSRP";
-      a3_offset = 6;
-      a3_hysteresis = 0;
-      a3_time_to_trigger = 480;
+    meas_report_desc = 
+    (
+      {
+        eventA = 3
+        a3_offset = 6;
+        hysteresis = 0;
+        time_to_trigger = 480;
+        trigger_quant = "RSRP";
+        max_report_cells = 1;
+        report_interv = 120;
+        report_amount = 1;
+      }
+    );
+    meas_quant_desc = {
+      // averaging filter coefficient
       rsrq_config = 4;
+      rsrp_config = 4;
     };
   }
 %endfor
