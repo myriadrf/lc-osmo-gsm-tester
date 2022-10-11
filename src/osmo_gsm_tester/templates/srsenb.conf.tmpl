@@ -23,9 +23,10 @@
 enb_id = ${hex(int(enb.id))}
 mcc = ${enb.mcc}
 mnc = ${enb.mnc}
-mme_addr = ${enb.mme_addr}
-gtp_bind_addr = ${enb.gtp_bind_addr}
-s1c_bind_addr = ${enb.addr}
+mme_addr = 127.0.1.100 # mme_addr = ${enb.mme_addr}
+gtp_bind_addr = 127.0.1.1 # gtp_bind_addr = ${enb.gtp_bind_addr}
+s1c_bind_addr = 127.0.1.1 # s1c_bind_addr = ${enb.addr}
+s1c_bind_port = 0
 n_prb = ${enb.num_prb}
 tm = ${enb.transmission_mode}
 nof_ports = ${enb.num_ports}
@@ -41,7 +42,7 @@ nof_ports = ${enb.num_ports}
 [enb_files]
 sib_config = ${enb.sib_filename}
 rr_config  = ${enb.rr_filename}
-drb_config = ${enb.drb_filename}
+rb_config = ${enb.drb_filename}
 
 #####################################################################
 # RF configuration
@@ -76,7 +77,7 @@ device_name = ${enb.rf_dev_type}
 #     USRP B210: send_frame_size=512,recv_frame_size=512
 
 device_args = ${enb.rf_dev_args},${enb.rf_dev_sync}
-#time_adv_nsamples = auto
+time_adv_nsamples = 73 # recommended for LimeSDR
 #burst_preamble_us = auto
 
 
@@ -288,10 +289,10 @@ tracing_filename     = ${enb.tracing_filename}
 #pregenerate_signals  = false
 #tx_amplitude         = 0.6
 #link_failure_nof_err = 50
-rrc_inactivity_timer = ${enb.inactivity_timer}
+#rrc_inactivity_timer = ${enb.inactivity_timer}
 #max_prach_offset_us  = 30
-eea_pref_list = ${', '.join(list(dict.fromkeys(enb.cipher_list))).upper()}
-eia_pref_list = ${', '.join(list(dict.fromkeys(enb.integrity_list))).upper()}
+#eea_pref_list = ${', '.join(list(dict.fromkeys(enb.cipher_list))).upper()}
+#eia_pref_list = ${', '.join(list(dict.fromkeys(enb.integrity_list))).upper()}
 % if "lime" in enb.rf_dev_args:
-lte_sample_rates = true
+#lte_sample_rates = true
 % endif

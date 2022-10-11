@@ -46,7 +46,7 @@ def on_register_schemas():
     schema.register_config_schema('enb', config_schema)
 
 def rf_type_valid(rf_type_str):
-    return rf_type_str in ('zmq', 'uhd', 'soapy', 'bladerf', 'fapi')
+    return rf_type_str in ('zmq', 'uhd', 'soapy', 'bladerf', 'fapi', 'lime')
 
 class srsENB(enb.eNodeB, srslte_common):
 
